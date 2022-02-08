@@ -19,11 +19,11 @@ public class Main {
             System.out.println("Origin array: " + arrayFromFile);
             System.out.println("Replace with negative: " + ArrayService.replaceNegativeToZero(arrayFromFile));
             System.out.println("Sorted array: " + array);
-            System.out.println("Max integer: " + ArrayService.getMax(arrayFromFile));
-            System.out.println("Min integer: " + ArrayService.getMin(arrayFromFile));
-            System.out.println("Sum of integers: " + ArrayService.getSum(arrayFromFile));
-            System.out.println("Amount of negative integers: " + ArrayService.getAmountNegative(arrayFromFile));
-            System.out.println("Average number:" + ArrayService.getAverage(arrayFromFile));
+            System.out.println("Max integer: " + ArrayService.getMax(arrayFromFile).get());
+            System.out.println("Min integer: " + ArrayService.getMin(arrayFromFile).get());
+            System.out.println("Sum of integers: " + ArrayService.getSum(arrayFromFile).get());
+            System.out.println("Amount of negative integers: " + ArrayService.getAmountNegative(arrayFromFile).get());
+            System.out.println("Average number:" + ArrayService.getAverage(arrayFromFile).get());
         } catch (IOException e) {
             log.error("There were problems during reading the file.", e);
         }

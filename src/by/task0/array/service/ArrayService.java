@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 public class ArrayService {
@@ -13,17 +14,23 @@ public class ArrayService {
 
     private static Random random = new Random();
 
-    public static int getMin(Array array) { // if the array is empty throw exception that can't find min in empty array
+    public static Optional<Integer> getMin(Array array) { // if the array is empty throw exception that can't find min in empty array
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
+        }
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) < min) {
                 min = array.get(i);
             }
         }
-        return min;
+        return Optional.of(min);
     }
 
     public static Array replaceNegativeToZero(Array array) {
+        if (array == null) {
+            return new Array(0);
+        }
         Array arrayResult = new Array(array.getArray());
         for (int i = 0; i < array.size(); i++) {
             if (arrayResult.get(i) < 0) {
@@ -33,38 +40,44 @@ public class ArrayService {
         return arrayResult;
     }
 
-    public static int getMax(Array array) {
+    public static Optional<Integer> getMax(Array array) {
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
+        }
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) > max) {
                 max = array.get(i);
             }
         }
-        return max;
+        return Optional.of(max);
     }
 
-    public static double getAverage(Array array) {
-        if (array.size() == 0) {
-            return 0;
+    public static Optional<Double> getAverage(Array array) {
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
+        }
+        double sum = 0;
+        for (int i = 0; i < array.size(); i++) {
+            sum += array.get(i);
+        }
+        return Optional.of(sum / array.size());
+    }
+
+    public static Optional<Integer> getSum(Array array) {
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        return sum / array.size();
+        return Optional.of(sum);
     }
 
-    public static double getSum(Array array) {
-        int sum = 0;
-        for (int i = 0; i < array.size(); i++) {
-            sum += array.get(i);
-        }
-        return sum;
-    }
-
-    public static double getAmountPositive(Array array) {
-        if (array.size() == 0) {
-            return 0;
+    public static Optional<Integer> getAmountPositive(Array array) {
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
@@ -72,12 +85,12 @@ public class ArrayService {
                 sum++;
             }
         }
-        return sum;
+        return Optional.of(sum);
     }
 
-    public static double getAmountNegative(Array array) {
-        if (array.size() == 0) {
-            return 0;
+    public static Optional<Integer> getAmountNegative(Array array) {
+        if (array == null || array.size() == 0) {
+            return Optional.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
@@ -85,10 +98,13 @@ public class ArrayService {
                 sum++;
             }
         }
-        return sum; // what if array has size 0
+        return Optional.of(sum);
     }
 
     public static Array sortInsertion(Array array) {
+        if (array == null) {
+            return new Array(0);
+        }
         Array newArray = new Array(array.getArray());
         for (int i = 1; i < newArray.size(); i++) {
             int curr = newArray.get(i);
@@ -102,6 +118,9 @@ public class ArrayService {
     }
 
     public static Array sortMerge(Array array) {
+        if (array == null) {
+            return new Array(0);
+        }
         Array newArray = new Array(array.getArray());
         sortMerge(newArray, 0, array.size() - 1);
         return newArray;
@@ -149,6 +168,9 @@ public class ArrayService {
     }
 
     public static Array sortQuick(Array array) {
+        if (array == null) {
+            return new Array(0);
+        }
         Array newArray = new Array(array.getArray());
         sortQuick(newArray, 0, array.size() - 1);
         return newArray;

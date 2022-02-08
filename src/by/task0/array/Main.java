@@ -17,7 +17,7 @@ public class Main {
             Array arrayFromFile = DataReader.getArrayFromFile(dataPath);
             final Array array = ArrayService.sortMerge(arrayFromFile);
             System.out.println("Origin array: " + arrayFromFile);
-            System.out.println(ArrayService.replaceNegativeToZero(arrayFromFile));
+            System.out.println("Replace with negative: " + ArrayService.replaceNegativeToZero(arrayFromFile));
             System.out.println("Sorted array: " + array);
             System.out.println("Max integer: " + ArrayService.getMax(arrayFromFile));
             System.out.println("Min integer: " + ArrayService.getMin(arrayFromFile));
@@ -25,7 +25,7 @@ public class Main {
             System.out.println("Amount of negative integers: " + ArrayService.getAmountNegative(arrayFromFile));
             System.out.println("Average number:" + ArrayService.getAverage(arrayFromFile));
         } catch (IOException e) {
-            log.error("There were problems during reading the file", e);
+            log.error("There were problems during reading the file.", e);
         }
     }
 }

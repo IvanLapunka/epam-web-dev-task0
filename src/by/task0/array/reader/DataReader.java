@@ -12,12 +12,6 @@ import java.io.IOException;
 public class DataReader {
     private static Logger log = LogManager.getLogger();
 
-    public static void main(String[] args) throws IOException {
-        String dataPath = PropertyReader.getPropertyValue("property.properties", "data_file_locations");
-        final Array arrayFromFile = getArrayFromFile(dataPath);
-        System.out.println(arrayFromFile);
-    }
-
     public static Array getArrayFromFile(String path) throws IOException {
         int[] numbers = null;
         try(final BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -26,8 +20,7 @@ public class DataReader {
             while ((line = reader.readLine()) != null) {
                 String[] sNumbers = line.split(delimiter);
                 numbers = new int[sNumbers.length];
-                int i = 0;
-                for (i = 0; i < sNumbers.length; i++) {
+                for (int i = 0; i < sNumbers.length; i++) {
                     if (!Validation.isInteger(sNumbers[i])){
                         log.info(" line " + i + " string: " + sNumbers[i]);
                         numbers = null;

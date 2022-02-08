@@ -1,13 +1,10 @@
 package by.task0.array.service;
 
 import by.task0.array.entity.Array;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 public class ArrayService {
@@ -36,7 +33,7 @@ public class ArrayService {
         return arrayResult;
     }
 
-    public static int getMax(Array array) { // if the array is empty throw exception that can't find min in empty array
+    public static int getMax(Array array) {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) > max) {
@@ -47,11 +44,14 @@ public class ArrayService {
     }
 
     public static double getAverage(Array array) {
+        if (array.size() == 0) {
+            return 0;
+        }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        return sum / array.size(); // what if array has size 0
+        return sum / array.size();
     }
 
     public static double getSum(Array array) {
@@ -59,20 +59,26 @@ public class ArrayService {
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        return sum; // what if array has size 0
+        return sum;
     }
 
     public static double getAmountPositive(Array array) {
+        if (array.size() == 0) {
+            return 0;
+        }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) > 0) {
                 sum++;
             }
         }
-        return sum; // what if array has size 0
+        return sum;
     }
 
     public static double getAmountNegative(Array array) {
+        if (array.size() == 0) {
+            return 0;
+        }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) < 0) {
@@ -114,7 +120,7 @@ public class ArrayService {
     private static void merge(Array array, int leftLeft, int leftRight, int rightLeft, int rightRight) {
         int ll = leftLeft;
         int[] buffer = new int[rightRight - leftLeft + 1];
-//        log.error("ll " + leftLeft + " rr " + rightRight + " buffer " + buffer.length);
+        log.debug("ll " + leftLeft + " rr " + rightRight + " buffer " + buffer.length);
         int i = 0;
         while (leftLeft <= leftRight && rightLeft <= rightRight) {
             if (array.get(rightLeft) < array.get(leftLeft)) {
@@ -153,7 +159,7 @@ public class ArrayService {
             return;
         }
         int middle = random.nextInt(right - left + 1) + left;
-        //log.log(Level.INFO, "left: " + left + " | right " + right + " | random " + middle);
+        log.debug("left: " + left + " | right " + right + " | random " + middle);
         swap(array, middle, left);
         int compareElement = array.get(left);
         int indexMaxLessThenCompare = left;

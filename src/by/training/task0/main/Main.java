@@ -1,9 +1,10 @@
-package by.task0.array;
+package by.training.task0.main;
 
-import by.task0.array.entity.Array;
-import by.task0.array.reader.DataReader;
-import by.task0.array.reader.PropertyReader;
-import by.task0.array.service.ArrayService;
+import by.training.task0.entity.CustomArray;
+import by.training.task0.exception.CustomException;
+import by.training.task0.reader.CustomArrayReaderImpl;
+import by.training.task0.reader.PropertyReader;
+import by.training.task0.service.ArrayService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,8 +15,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             String dataPath =  PropertyReader.getPropertyValue("property.properties", "data_file_locations");
-            Array arrayFromFile = DataReader.getArrayFromFile(dataPath);
-            final Array array = ArrayService.sortMerge(arrayFromFile);
+            CustomArrayReaderImpl arrayReader = new CustomArrayReaderImpl();
+            CustomArray arrayFromFile = arrayReader.readFirstValid(dataPath);
+            final CustomArray array = ArrayService.sortMerge(arrayFromFile);
             System.out.println("Origin array: " + arrayFromFile);
             System.out.println("Replace with negative: " + ArrayService.replaceNegativeToZero(arrayFromFile));
             System.out.println("Sorted array: " + array);
@@ -24,8 +26,8 @@ public class Main {
             System.out.println("Sum of integers: " + ArrayService.getSum(arrayFromFile).get());
             System.out.println("Amount of negative integers: " + ArrayService.getAmountNegative(arrayFromFile).get());
             System.out.println("Average number:" + ArrayService.getAverage(arrayFromFile).get());
-        } catch (IOException e) {
-            log.error("There were problems during reading the file.", e);
+        } catch (IOException | CustomException e) {
+            log.error("There were problems during reading and opening file.", e);
         }
     }
 }

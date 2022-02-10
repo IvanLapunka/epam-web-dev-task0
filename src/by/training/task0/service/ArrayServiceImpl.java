@@ -1,6 +1,6 @@
-package by.task0.array.service;
+package by.training.task0.service;
 
-import by.task0.array.entity.Array;
+import by.training.task0.entity.CustomArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 
-public class ArrayService {
+public class ArrayServiceImpl implements ArrayService {
 
     private static Logger log = LogManager.getLogger();
 
     private static Random random = new Random();
 
-    public static Optional<Integer> getMin(Array array) { // if the array is empty throw exception that can't find min in empty array
+    public Optional<Integer> getMin(CustomArray array) { // if the array is empty throw exception that can't find min in empty array
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -27,11 +27,11 @@ public class ArrayService {
         return Optional.of(min);
     }
 
-    public static Array replaceNegativeToZero(Array array) {
+    public CustomArray replaceNegativeToZero(CustomArray array) {
         if (array == null) {
-            return new Array(0);
+            return new CustomArray(0);
         }
-        Array arrayResult = new Array(array.getArray());
+        CustomArray arrayResult = new CustomArray(array.getArray());
         for (int i = 0; i < array.size(); i++) {
             if (arrayResult.get(i) < 0) {
                 arrayResult.set(i, 0);
@@ -40,7 +40,7 @@ public class ArrayService {
         return arrayResult;
     }
 
-    public static Optional<Integer> getMax(Array array) {
+    public Optional<Integer> getMax(CustomArray array) {
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -53,7 +53,7 @@ public class ArrayService {
         return Optional.of(max);
     }
 
-    public static Optional<Double> getAverage(Array array) {
+    public Optional<Double> getAverage(CustomArray array) {
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -64,7 +64,7 @@ public class ArrayService {
         return Optional.of(sum / array.size());
     }
 
-    public static Optional<Integer> getSum(Array array) {
+    public Optional<Integer> getSum(CustomArray array) {
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -75,7 +75,7 @@ public class ArrayService {
         return Optional.of(sum);
     }
 
-    public static Optional<Integer> getAmountPositive(Array array) {
+    public Optional<Integer> getAmountPositive(CustomArray array) {
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -88,7 +88,7 @@ public class ArrayService {
         return Optional.of(sum);
     }
 
-    public static Optional<Integer> getAmountNegative(Array array) {
+    public Optional<Integer> getAmountNegative(CustomArray array) {
         if (array == null || array.size() == 0) {
             return Optional.empty();
         }
@@ -101,11 +101,11 @@ public class ArrayService {
         return Optional.of(sum);
     }
 
-    public static Array sortInsertion(Array array) {
+    public CustomArray sortInsertion(CustomArray array) {
         if (array == null) {
-            return new Array(0);
+            return new CustomArray(0);
         }
-        Array newArray = new Array(array.getArray());
+        CustomArray newArray = new CustomArray(array.getArray());
         for (int i = 1; i < newArray.size(); i++) {
             int curr = newArray.get(i);
             int j = i;
@@ -117,16 +117,16 @@ public class ArrayService {
         return newArray;
     }
 
-    public static Array sortMerge(Array array) {
+    public CustomArray sortMerge(CustomArray array) {
         if (array == null) {
-            return new Array(0);
+            return new CustomArray(0);
         }
-        Array newArray = new Array(array.getArray());
+        CustomArray newArray = new CustomArray(array.getArray());
         sortMerge(newArray, 0, array.size() - 1);
         return newArray;
     }
 
-    private static void sortMerge(Array array, int left, int right) {
+    private void sortMerge(CustomArray array, int left, int right) {
         if (left >= right) {
             return;
         }
@@ -136,7 +136,7 @@ public class ArrayService {
         merge(array, left, middle, middle + 1, right);
     }
 
-    private static void merge(Array array, int leftLeft, int leftRight, int rightLeft, int rightRight) {
+    private void merge(CustomArray array, int leftLeft, int leftRight, int rightLeft, int rightRight) {
         int ll = leftLeft;
         int[] buffer = new int[rightRight - leftLeft + 1];
         log.debug("ll " + leftLeft + " rr " + rightRight + " buffer " + buffer.length);
@@ -167,16 +167,16 @@ public class ArrayService {
         log.debug(Arrays.toString(array.getArray()));
     }
 
-    public static Array sortQuick(Array array) {
+    public CustomArray sortQuick(CustomArray array) {
         if (array == null) {
-            return new Array(0);
+            return new CustomArray(0);
         }
-        Array newArray = new Array(array.getArray());
+        CustomArray newArray = new CustomArray(array.getArray());
         sortQuick(newArray, 0, array.size() - 1);
         return newArray;
     }
 
-    private static void sortQuick(Array array, int left, int right) {
+    private void sortQuick(CustomArray array, int left, int right) {
         if (left >= right) {
             return;
         }
@@ -196,7 +196,7 @@ public class ArrayService {
         sortQuick(array, indexMaxLessThenCompare + 1, right);
     }
 
-    private static void swap(Array array, int i, int j) {
+    private static void swap(CustomArray array, int i, int j) {
         int tmp = array.get(i);
         array.set(i, array.get(j));
         array.set(j, tmp);

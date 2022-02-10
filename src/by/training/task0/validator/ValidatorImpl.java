@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public enum ValidatorImpl implements Validator {
     INSTANCE;
+
     private static final Pattern pattern = Pattern.compile("-?\\d+");
 
     @Override public boolean isInteger(String value) {

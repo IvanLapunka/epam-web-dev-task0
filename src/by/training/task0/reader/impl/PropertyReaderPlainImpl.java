@@ -1,6 +1,7 @@
-package by.training.task0.reader;
+package by.training.task0.reader.impl;
 
 import by.training.task0.exception.CustomException;
+import by.training.task0.reader.PropertyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-public class PropertyReaderPlainImpl implements PropertyReader{
+public class PropertyReaderPlainImpl implements PropertyReader {
     private static Logger log = LogManager.getLogger();
     private Properties properties;
     private final String fileName;

@@ -2,9 +2,9 @@ package by.training.task0.main;
 
 import by.training.task0.entity.CustomArray;
 import by.training.task0.exception.CustomException;
-import by.training.task0.reader.CustomArrayReaderImpl;
+import by.training.task0.reader.impl.CustomArrayReaderImpl;
 import by.training.task0.reader.PropertyReader;
-import by.training.task0.reader.PropertyReaderPlainImpl;
+import by.training.task0.reader.impl.PropertyReaderPlainImpl;
 import by.training.task0.service.ArrayService;
 import by.training.task0.service.ArrayServiceImpl;
 import by.training.task0.validator.ValidatorImpl;

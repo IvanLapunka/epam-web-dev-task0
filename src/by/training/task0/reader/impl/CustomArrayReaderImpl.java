@@ -1,9 +1,12 @@
-package by.training.task0.reader;
+package by.training.task0.reader.impl;
 
+import by.training.task0.creator.CustomArrayCreator;
+import by.training.task0.creator.CustomArrayCreatorImpl;
 import by.training.task0.entity.CustomArray;
 import by.training.task0.exception.CustomException;
 import by.training.task0.parser.CustomParser;
 import by.training.task0.parser.CustomParserImpl;
+import by.training.task0.reader.CustomArrayReader;
 import by.training.task0.validator.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,16 +22,19 @@ import java.util.stream.Collectors;
 
 public class CustomArrayReaderImpl implements CustomArrayReader {
     private static Logger log = LogManager.getLogger();
+    private CustomArrayCreator creator = new CustomArrayCreatorImpl();
 
     @Override
     public Optional<CustomArray> readFirstValid(String filePath, Validator validator) throws CustomException {
         List<String> rows = readAllLinesFromFile(filePath);
         CustomParser parser = CustomParserImpl.INSTANCE;
+
+
         for (String row : rows) {
             if (validator.isIntegerNumbersArray(row)) {
                 Optional<int[]> intArray = parser.parseToIntArray(row, validator);
                 if (intArray.isPresent()) {
-                    return Optional.of(new CustomArray(intArray.get()));
+                    return Optional.of(creator.createCustomArray(intArray.get()));
                 }
             }
         }
@@ -44,7 +50,7 @@ public class CustomArrayReaderImpl implements CustomArrayReader {
                 .map(row -> parser.parseToIntArray(row, validator))
                 .filter(Optional::isPresent)
                 .flatMap(Optional::stream)
-                .map(CustomArray::new)
+                .map(creator::createCustomArray)
                 .collect(Collectors.toList());
         return result.size() > 0 ? Optional.of(result) : Optional.empty();
     }

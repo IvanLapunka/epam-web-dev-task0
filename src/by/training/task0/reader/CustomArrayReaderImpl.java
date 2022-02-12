@@ -15,39 +15,38 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CustomArrayReaderImpl implements CustomArrayReader {
     private static Logger log = LogManager.getLogger();
 
-    private Validator validator;
-    private String regexDelimiter;
-
-    public CustomArrayReaderImpl(Validator validator, String regexDelimiter) {
-        this.validator = validator;
-        this.regexDelimiter = regexDelimiter;
-    }
-
     @Override
-    public Optional<CustomArray> readFirstValid(String path) throws CustomException {
-        List<String> rows = readAllLinesFromFile(path);
+    public Optional<CustomArray> readFirstValid(String filePath, Validator validator) throws CustomException {
+        List<String> rows = readAllLinesFromFile(filePath);
+        CustomParser parser = CustomParserImpl.INSTANCE;
         for (String row : rows) {
-            if (validateRow(row, regexDelimiter)) {
-                CustomParser parser = CustomParserImpl.INSTANCE;
-                String[] sNumbers = row.split(regexDelimiter);
-                return Optional.of(new CustomArray(parser.parseToIntArray(sNumbers)));
+            if (validator.isIntegerNumbersArray(row)) {
+                Optional<int[]> intArray = parser.parseToIntArray(row, validator);
+                if (intArray.isPresent()) {
+                    return Optional.of(new CustomArray(intArray.get()));
+                }
             }
         }
         return Optional.empty();
     }
 
-    private boolean validateRow(String row, String wordRegDelimiter) {
-        String[] sNumbers = row.split(wordRegDelimiter);
-        for (String word: sNumbers) {
-            if (!validator.isInteger(word)) {
-                return false;
-            }
-        }
-        return true;
+    @Override
+    public Optional<List<CustomArray>> readAllValidRows(String filePath, Validator validator) throws CustomException {
+        List<String> rows = readAllLinesFromFile(filePath);
+        CustomParser parser = CustomParserImpl.INSTANCE;
+        var result = rows.stream()
+                .filter(validator::isIntegerNumbersArray)
+                .map(row -> parser.parseToIntArray(row, validator))
+                .filter(Optional::isPresent)
+                .flatMap(Optional::stream)
+                .map(CustomArray::new)
+                .collect(Collectors.toList());
+        return result.size() > 0 ? Optional.of(result) : Optional.empty();
     }
 
     private List<String> readAllLinesFromFile(String path) throws CustomException{

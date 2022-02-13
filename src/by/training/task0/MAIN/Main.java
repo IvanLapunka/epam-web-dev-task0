@@ -1,4 +1,4 @@
-package by.training.task0.main;
+package by.training.task0.MAIN;
 
 import by.training.task0.entity.CustomArray;
 import by.training.task0.exception.CustomException;
@@ -44,10 +44,10 @@ public class Main {
         System.out.println("Origin array: " + arrayFromFile);
         System.out.println("Replace with negative: " + arrayService.replaceNegativeToZero(arrayFromFile));
         System.out.println("Sorted array: " + array);
-        System.out.println("Max integer: " + arrayService.getMax(arrayFromFile).get());
-        System.out.println("Min integer: " + arrayService.getMin(arrayFromFile).get());
-        System.out.println("Sum of integers: " + arrayService.getSum(arrayFromFile).get());
-        System.out.println("Amount of negative integers: " + arrayService.getAmountNegative(arrayFromFile).get());
-        System.out.println("Average number:" + arrayService.getAverage(arrayFromFile).get());
+        System.out.println("Max integer: " + arrayService.getMax(arrayFromFile).getAsInt());
+        System.out.println("Min integer: " + arrayService.getMin(arrayFromFile).getAsInt());
+        System.out.println("Sum of integers: " + arrayService.getSum(arrayFromFile).getAsInt());
+        System.out.println("Amount of negative integers: " + arrayService.getAmountNegative(arrayFromFile).getAsInt());
+        System.out.println("Average number:" + arrayService.getAverage(arrayFromFile).getAsDouble());
     }
 }

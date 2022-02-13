@@ -1,7 +1,6 @@
 package by.training.task0.reader.impl;
 
 import by.training.task0.creator.CustomArrayCreator;
-import by.training.task0.creator.CustomArrayCreatorImpl;
 import by.training.task0.entity.CustomArray;
 import by.training.task0.exception.CustomException;
 import by.training.task0.parser.CustomParser;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class CustomArrayReaderImpl implements CustomArrayReader {
     private static Logger log = LogManager.getLogger();
-    private CustomArrayCreator creator = new CustomArrayCreatorImpl();
+    private CustomArrayCreator creator = new CustomArrayCreator();
 
     @Override
     public Optional<CustomArray> readFirstValid(String filePath, Validator validator) throws CustomException {

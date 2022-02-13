@@ -6,23 +6,25 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Random;
 
 public interface ArrayService {
 
-        Optional<Integer> getMin(CustomArray array) ;
+        OptionalInt getMin(CustomArray array) ;
 
         CustomArray replaceNegativeToZero(CustomArray array);
 
-        Optional<Integer> getMax(CustomArray array);
+        OptionalInt getMax(CustomArray array);
 
-        Optional<Double> getAverage(CustomArray array);
+        OptionalDouble getAverage(CustomArray array);
 
-        Optional<Integer> getSum(CustomArray array) ;
+        OptionalInt getSum(CustomArray array) ;
 
-        Optional<Integer> getAmountPositive(CustomArray array);
+        OptionalInt getAmountPositive(CustomArray array);
 
-        Optional<Integer> getAmountNegative(CustomArray array);
+        OptionalInt getAmountNegative(CustomArray array);
 
         CustomArray sortInsertion(CustomArray array);
 

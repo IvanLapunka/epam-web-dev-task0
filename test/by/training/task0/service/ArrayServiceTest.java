@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,8 +20,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 3;
-        Optional<Integer> result = arrayService.getAmountPositive(array);
-        assertEquals(expect, result.get());
+        OptionalInt result = arrayService.getAmountPositive(array);
+        assertEquals(expect, result.getAsInt());
     }
 
     @Test
@@ -27,8 +29,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 4;
-        Optional<Integer> result = arrayService.getAmountNegative(array);
-        assertEquals(expect, result.get());
+        OptionalInt result = arrayService.getAmountNegative(array);
+        assertEquals(expect, result.getAsInt());
     }
 
     @Test
@@ -36,8 +38,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = -4;
-        Optional<Integer> result = arrayService.getMin(array);
-        assertEquals(expect, result.get());
+        OptionalInt result = arrayService.getMin(array);
+        assertEquals(expect, result.getAsInt());
     }
 
     @Test
@@ -45,8 +47,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 3;
-        Optional<Integer> result = arrayService.getMax(array);
-        assertEquals(expect, result.get());
+        OptionalInt result = arrayService.getMax(array);
+        assertEquals(expect, result.getAsInt());
     }
 
     @Test
@@ -63,8 +65,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         double expect = -0.5;
-        Optional<Double> result = arrayService.getAverage(array);
-        assertEquals(expect, result.get());
+        OptionalDouble result = arrayService.getAverage(array);
+        assertEquals(expect, result.getAsDouble());
     }
 
     @Test
@@ -72,8 +74,8 @@ public class ArrayServiceTest {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = -4;
-        Optional<Integer> result = arrayService.getSum(array);
-        assertEquals(expect, result.get());
+        OptionalInt result = arrayService.getSum(array);
+        assertEquals(expect, result.getAsInt());
     }
 
     @Test

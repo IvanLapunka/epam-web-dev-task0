@@ -3,7 +3,7 @@ package by.training.task0.entity;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-public class CustomArray {
+public class CustomArray extends AbstractCustomArray{
     private int[] array;
 
     public CustomArray(int[] array) {

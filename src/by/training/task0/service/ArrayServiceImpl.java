@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Random;
 
 public class ArrayServiceImpl implements ArrayService {
@@ -14,9 +16,9 @@ public class ArrayServiceImpl implements ArrayService {
 
     private static Random random = new Random();
 
-    public Optional<Integer> getMin(CustomArray array) { // if the array is empty throw exception that can't find min in empty array
+    public OptionalInt getMin(CustomArray array) { // if the array is empty throw exception that can't find min in empty array
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalInt.empty();
         }
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < array.size(); i++) {
@@ -24,7 +26,7 @@ public class ArrayServiceImpl implements ArrayService {
                 min = array.get(i);
             }
         }
-        return Optional.of(min);
+        return OptionalInt.of(min);
     }
 
     public CustomArray replaceNegativeToZero(CustomArray array) {
@@ -40,9 +42,9 @@ public class ArrayServiceImpl implements ArrayService {
         return arrayResult;
     }
 
-    public Optional<Integer> getMax(CustomArray array) {
+    public OptionalInt getMax(CustomArray array) {
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalInt.empty();
         }
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < array.size(); i++) {
@@ -50,34 +52,34 @@ public class ArrayServiceImpl implements ArrayService {
                 max = array.get(i);
             }
         }
-        return Optional.of(max);
+        return OptionalInt.of(max);
     }
 
-    public Optional<Double> getAverage(CustomArray array) {
+    public OptionalDouble getAverage(CustomArray array) {
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalDouble.empty();
         }
         double sum = 0;
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        return Optional.of(sum / array.size());
+        return OptionalDouble.of(sum / array.size());
     }
 
-    public Optional<Integer> getSum(CustomArray array) {
+    public OptionalInt getSum(CustomArray array) {
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalInt.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        return Optional.of(sum);
+        return OptionalInt.of(sum);
     }
 
-    public Optional<Integer> getAmountPositive(CustomArray array) {
+    public OptionalInt getAmountPositive(CustomArray array) {
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalInt.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
@@ -85,12 +87,12 @@ public class ArrayServiceImpl implements ArrayService {
                 sum++;
             }
         }
-        return Optional.of(sum);
+        return OptionalInt.of(sum);
     }
 
-    public Optional<Integer> getAmountNegative(CustomArray array) {
+    public OptionalInt getAmountNegative(CustomArray array) {
         if (array == null || array.size() == 0) {
-            return Optional.empty();
+            return OptionalInt.empty();
         }
         int sum = 0;
         for (int i = 0; i < array.size(); i++) {
@@ -98,7 +100,7 @@ public class ArrayServiceImpl implements ArrayService {
                 sum++;
             }
         }
-        return Optional.of(sum);
+        return OptionalInt.of(sum);
     }
 
     public CustomArray sortInsertion(CustomArray array) {

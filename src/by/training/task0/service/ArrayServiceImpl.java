@@ -16,7 +16,7 @@ public class ArrayServiceImpl implements ArrayService {
 
     private static Random random = new Random();
 
-    public OptionalInt getMin(CustomArray array) { // if the array is empty throw exception that can't find min in empty array
+    public OptionalInt getMin(CustomArray array) {
         if (array == null || array.size() == 0) {
             return OptionalInt.empty();
         }

@@ -1,9 +1,12 @@
 package by.training.task0.entity;
 
+import by.training.task0.observer.ArrayObserver;
+
 import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class CustomArray extends AbstractCustomArray{
+    private static int counter = 1;
     private int[] array;
 
     public CustomArray(int[] array) {
@@ -11,6 +14,8 @@ public class CustomArray extends AbstractCustomArray{
             this.array = new int[0];
         }
         this.array = array.clone();
+        this.id = counter;
+        counter++;
     }
 
     public CustomArray(int size) {
@@ -31,6 +36,7 @@ public class CustomArray extends AbstractCustomArray{
 
     public void set(int index, int value) {
         array[index] = value;
+        notifyAllObservers();
     }
 
     @Override
@@ -54,5 +60,12 @@ public class CustomArray extends AbstractCustomArray{
     @Override
     public int hashCode() {
         return Arrays.hashCode(array);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (ArrayObserver observer: observers) {
+            observer.changeElement(this);
+        }
     }
 }

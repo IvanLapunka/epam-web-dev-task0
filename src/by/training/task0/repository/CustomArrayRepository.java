@@ -12,4 +12,5 @@ public interface CustomArrayRepository {
     void removeCustomArray(CustomArray customArray);
     List<CustomArray> query(Predicate<CustomArray> predicate);
     List<CustomArray> query(Specification specification);
+    List<CustomArray> queryAll();
 }

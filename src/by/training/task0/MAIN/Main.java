@@ -1,10 +1,17 @@
 package by.training.task0.MAIN;
 
+import by.training.task0.configurator.CustomArrayConfigurator;
 import by.training.task0.entity.CustomArray;
+import by.training.task0.entity.Warehouse;
 import by.training.task0.exception.CustomException;
 import by.training.task0.reader.impl.CustomArrayReaderImpl;
 import by.training.task0.reader.PropertyReader;
 import by.training.task0.reader.impl.PropertyReaderPlainImpl;
+import by.training.task0.repository.CustomArrayRepository;
+import by.training.task0.repository.CustomArrayRepositoryImpl;
+import by.training.task0.repository.specification.AllElements;
+import by.training.task0.repository.specification.AllPositive;
+import by.training.task0.repository.specification.SumIsPositive;
 import by.training.task0.service.ArrayService;
 import by.training.task0.service.ArrayServiceImpl;
 import by.training.task0.validator.ValidatorImpl;
@@ -12,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Main {
     private static Logger log = LogManager.getLogger();
@@ -27,10 +35,48 @@ public class Main {
             final List<CustomArray> customArrays = arrayReader.readAllValidRows(dataPath2, ValidatorImpl.INSTANCE)
                     .orElse(List.of());
 
-            customArrays.forEach(System.out::println);
+            task0Part2(customArrays);
+
         } catch (CustomException e) {
             log.error("There were problems during reading and opening file.", e);
         }
+    }
+
+    private static void task0Part2(List<CustomArray> customArrays) {
+        CustomArrayRepository customArrayRepository = CustomArrayRepositoryImpl.getInstance();
+        customArrayRepository.addAllCustomArray(customArrays);
+
+        System.out.println("Sum is positive arrays:");
+        final List<CustomArray> sumPositive = customArrayRepository.query(new SumIsPositive());
+        sumPositive.forEach(System.out::println);
+
+        System.out.println("All elements are positive:");
+        final List<CustomArray> allPositive = customArrayRepository.query(new AllPositive());
+        allPositive.forEach(System.out::println);
+
+        System.out.println("Average is more then 1.0:");
+        Predicate<CustomArray> averageIsMoreThenOne = array -> {
+            double sum = 0;
+            for (int element: array.getArray()) {
+                sum += element;
+            }
+            return sum / array.getArray().length > 1.0;
+        };
+        final List<CustomArray> query2 = customArrayRepository.query(averageIsMoreThenOne); // какой метод вызовется
+        query2.forEach(System.out::println);
+
+        CustomArrayConfigurator configurator = new CustomArrayConfigurator();
+        configurator.fillWarehouse();
+
+        System.out.println("Before changing elements");
+        Warehouse warehouse = Warehouse.getInstance();
+        warehouse.getAll().forEach(System.out::println);
+
+        final List<CustomArray> allArrays = customArrayRepository.queryAll();
+        allArrays.forEach(array -> array.set(0, -1000));
+        customArrayRepository.queryAll();
+        System.out.println("After changing elements and processing Observer");
+        warehouse.getAll().forEach(System.out::println);
     }
 
     private static void checkFirstValidLine(String dataPath, CustomArrayReaderImpl arrayReader) throws CustomException {

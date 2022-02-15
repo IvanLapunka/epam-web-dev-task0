@@ -1,5 +1,7 @@
 package by.training.task0.entity;
 
+import java.util.StringJoiner;
+
 public class ArrayStatistics {
     private int min;
     private int max;
@@ -11,5 +13,15 @@ public class ArrayStatistics {
         this.max = max;
         this.sum = sum;
         this.average = average;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner("","ArrayStatistics{","}")
+                .add(", min=").add(min + "")
+                .add(", max=").add(max + "")
+                .add(", sum=").add(sum + "")
+                .add(", average=").add(average + "")
+                .toString();
     }
 }

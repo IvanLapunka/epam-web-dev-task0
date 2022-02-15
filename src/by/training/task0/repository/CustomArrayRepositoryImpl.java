@@ -1,6 +1,7 @@
 package by.training.task0.repository;
 
 import by.training.task0.entity.CustomArray;
+import by.training.task0.repository.specification.AllElements;
 import by.training.task0.repository.specification.Specification;
 
 import java.util.HashMap;
@@ -42,17 +43,22 @@ public class CustomArrayRepositoryImpl implements CustomArrayRepository{
 
     @Override
     public List<CustomArray> query(Predicate<CustomArray> predicate) {
-        return items.entrySet().stream()
-                .filter(entry -> predicate.test(entry.getValue()))
-                .map(entry -> entry.getValue())
+        return items.values().stream()
+                .filter(predicate::test)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<CustomArray> query(Specification specification) {
-        return items.entrySet().stream()
-                    .filter(entry -> specification.specified(entry.getValue()))
-                    .map(entry -> entry.getValue())
+        return items.values().stream()
+                    .filter(specification::specified)
                     .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CustomArray> queryAll() {
+        return items.values().stream()
+                .filter(value -> new AllElements().specified(value))
+                .collect(Collectors.toList());
     }
 }

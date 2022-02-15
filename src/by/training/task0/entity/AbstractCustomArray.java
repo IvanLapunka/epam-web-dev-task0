@@ -4,7 +4,6 @@ import by.training.task0.observer.ArrayObserver;
 import by.training.task0.observer.Observable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class AbstractCustomArray implements Observable {

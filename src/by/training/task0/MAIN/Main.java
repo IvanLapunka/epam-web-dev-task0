@@ -77,6 +77,19 @@ public class Main {
         customArrayRepository.queryAll();
         System.out.println("After changing elements and processing Observer");
         warehouse.getAll().forEach(System.out::println);
+
+        final ArrayServiceImpl arrayService = new ArrayServiceImpl();
+
+        System.out.println("Sort array in reverse order");
+        final CustomArray customArray = arrayService.sortComparator(customArrayRepository.queryAll().get(0), (a, b) -> b - a);
+        System.out.println(customArray);
+
+        System.out.println("BEFORE sort arrays by their length");
+        customArrayRepository.queryAll().forEach(System.out::println);
+
+        System.out.println("AFTER sort arrays by their length");
+        customArrayRepository.sort((c1, c2) -> c1.size() - c2.size()).forEach(System.out::println);
+
     }
 
     private static void checkFirstValidLine(String dataPath, CustomArrayReaderImpl arrayReader) throws CustomException {

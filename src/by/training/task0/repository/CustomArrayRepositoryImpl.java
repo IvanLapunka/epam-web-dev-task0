@@ -4,6 +4,7 @@ import by.training.task0.entity.CustomArray;
 import by.training.task0.repository.specification.AllElements;
 import by.training.task0.repository.specification.Specification;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -59,6 +60,14 @@ public class CustomArrayRepositoryImpl implements CustomArrayRepository{
     public List<CustomArray> queryAll() {
         return items.values().stream()
                 .filter(value -> new AllElements().specified(value))
+                .collect(Collectors.toList());
+    }
+
+    ///Где хранить компараторы?
+    @Override
+    public List<CustomArray> sort(Comparator<CustomArray> comparator) {
+        return items.values().stream()
+                .sorted(comparator)
                 .collect(Collectors.toList());
     }
 }

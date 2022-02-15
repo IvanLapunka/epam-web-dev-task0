@@ -1,14 +1,10 @@
 package by.training.task0.service;
 
 import by.training.task0.entity.CustomArray;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.Comparator;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
-import java.util.Random;
 
 public interface ArrayService {
 
@@ -31,4 +27,6 @@ public interface ArrayService {
         CustomArray sortMerge(CustomArray array);
 
         CustomArray sortQuick(CustomArray array);
+
+        CustomArray sortComparator(CustomArray array, Comparator<Integer> comparator);
 }

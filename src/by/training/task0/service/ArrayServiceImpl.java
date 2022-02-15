@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -176,6 +177,22 @@ public class ArrayServiceImpl implements ArrayService {
         CustomArray newArray = new CustomArray(array.getArray());
         sortQuick(newArray, 0, array.size() - 1);
         return newArray;
+    }
+
+    @Override
+    public CustomArray sortComparator(CustomArray array, Comparator<Integer> comparator) {
+
+        final Integer[] sortAr = Arrays.stream(array.getArray())
+                .boxed()
+                .toArray(Integer[]::new);
+
+        Arrays.sort(sortAr, comparator);
+
+        int[] targetAr = new int[array.size()];
+
+        Arrays.setAll(targetAr, i -> sortAr[i]);
+        
+        return new CustomArray(targetAr);
     }
 
     private void sortQuick(CustomArray array, int left, int right) {

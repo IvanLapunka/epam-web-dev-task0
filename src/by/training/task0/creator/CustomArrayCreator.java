@@ -16,11 +16,4 @@ public class CustomArrayCreator {
         customArray.attach(observer);
         return customArray;
     }
-
-//    public List<CustomArray> createManyRandomCustomArrays() {
-//        int amount = random.nextInt(10) + 3;
-//        for (int i = 0; i < amount; i++) {
-//
-//        }
-//    }
 }

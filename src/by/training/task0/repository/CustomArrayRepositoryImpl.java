@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class CustomArrayRepositoryImpl implements CustomArrayRepository{
 
     private final static CustomArrayRepositoryImpl INSTANCE = new CustomArrayRepositoryImpl();
-    Map<Integer, CustomArray> items = new HashMap<>();
+    private Map<Integer, CustomArray> items = new HashMap<>();
 
     private CustomArrayRepositoryImpl() {}
 

@@ -7,16 +7,10 @@ import java.util.regex.Pattern;
 public enum ValidatorImpl implements Validator {
     INSTANCE;
 
-    private static final String DELIMITER = " +";
     private static final String NUMBER_INTEGER_REGEX = "-?\\d+";
     private static final String NUMBERS_INTEGER_REGEX = "^( *-?\\d+ *)+$";
     private static final Pattern patternNumberInteger = Pattern.compile(NUMBER_INTEGER_REGEX);
     private static final Pattern patternRowOfNumbers = Pattern.compile(NUMBERS_INTEGER_REGEX);
-
-    @Override
-    public String getDelimiter() {
-        return DELIMITER;
-    }
 
     @Override
     public boolean isIntegerType(String value) {
@@ -25,8 +19,8 @@ public enum ValidatorImpl implements Validator {
         }
 
         BigInteger test = new BigInteger(value);
-        int result = test.intValue();
-        return test.toString().equals(result + "");
+        BigInteger result = BigInteger.valueOf(test.intValue());
+        return test.equals(result);
     }
 
     @Override

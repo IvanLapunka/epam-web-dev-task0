@@ -12,7 +12,7 @@ public enum CustomParserImpl implements CustomParser{
 
     @Override
     public Optional<int[]> parseToIntArray(String str, Validator validator) {
-        String[] sNumbers = str.split(validator.getDelimiter());
+        String[] sNumbers = str.split(validator.DELIMITER);
         int[] array = new int[sNumbers.length];
         for (int i = 0; i < array.length; i++) {
             if (!validator.isIntegerType(sNumbers[i])) {

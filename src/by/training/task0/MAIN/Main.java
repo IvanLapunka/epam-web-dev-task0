@@ -9,9 +9,8 @@ import by.training.task0.reader.PropertyReader;
 import by.training.task0.reader.impl.PropertyReaderPlainImpl;
 import by.training.task0.repository.CustomArrayRepository;
 import by.training.task0.repository.CustomArrayRepositoryImpl;
-import by.training.task0.repository.specification.AllElements;
-import by.training.task0.repository.specification.AllPositive;
-import by.training.task0.repository.specification.SumIsPositive;
+import by.training.task0.repository.specification.impl.AllPositiveSpecification;
+import by.training.task0.repository.specification.impl.SumIsPositiveSpecification;
 import by.training.task0.service.ArrayService;
 import by.training.task0.service.ArrayServiceImpl;
 import by.training.task0.validator.ValidatorImpl;
@@ -47,11 +46,11 @@ public class Main {
         customArrayRepository.addAllCustomArray(customArrays);
 
         System.out.println("Sum is positive arrays:");
-        final List<CustomArray> sumPositive = customArrayRepository.query(new SumIsPositive());
+        final List<CustomArray> sumPositive = customArrayRepository.query(new SumIsPositiveSpecification());
         sumPositive.forEach(System.out::println);
 
         System.out.println("All elements are positive:");
-        final List<CustomArray> allPositive = customArrayRepository.query(new AllPositive());
+        final List<CustomArray> allPositive = customArrayRepository.query(new AllPositiveSpecification());
         allPositive.forEach(System.out::println);
 
         System.out.println("Average is more then 1.0:");

@@ -1,7 +1,7 @@
 package by.training.task0.repository;
 
 import by.training.task0.entity.CustomArray;
-import by.training.task0.repository.specification.AllElements;
+import by.training.task0.repository.specification.impl.AllElementsSpecification;
 import by.training.task0.repository.specification.Specification;
 
 import java.util.Comparator;
@@ -59,7 +59,7 @@ public class CustomArrayRepositoryImpl implements CustomArrayRepository{
     @Override
     public List<CustomArray> queryAll() {
         return items.values().stream()
-                .filter(value -> new AllElements().specified(value))
+                .filter(value -> new AllElementsSpecification().specified(value))
                 .collect(Collectors.toList());
     }
 

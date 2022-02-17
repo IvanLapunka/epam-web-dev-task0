@@ -5,20 +5,19 @@ import by.training.task0.entity.CustomArray;
 import by.training.task0.entity.Warehouse;
 import by.training.task0.repository.CustomArrayRepository;
 import by.training.task0.repository.CustomArrayRepositoryImpl;
-import by.training.task0.repository.specification.AllElements;
+import by.training.task0.repository.specification.impl.AllElementsSpecification;
 import by.training.task0.service.ArrayService;
 import by.training.task0.service.ArrayServiceImpl;
 
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
-import java.util.function.Predicate;
 
 public class CustomArrayConfigurator {
     public void fillWarehouse() {
         Warehouse warehouse = Warehouse.getInstance();
         CustomArrayRepository repository = CustomArrayRepositoryImpl.getInstance();
-        final List<CustomArray> query = repository.query(new AllElements());
+        final List<CustomArray> query = repository.query(new AllElementsSpecification());
         query.forEach(array -> warehouse.add(array.getId(), getArrayStatistics(array)));
     }
 

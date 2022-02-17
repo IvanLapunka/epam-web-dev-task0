@@ -1,8 +1,9 @@
-package by.training.task0.repository.specification;
+package by.training.task0.repository.specification.impl;
 
 import by.training.task0.entity.CustomArray;
+import by.training.task0.repository.specification.Specification;
 
-public class SumIsPositive implements Specification {
+public class SumIsPositiveSpecification implements Specification {
     @Override
     public boolean specified(CustomArray customArray) {
         int sum = 0;

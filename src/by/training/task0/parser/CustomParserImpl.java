@@ -7,8 +7,17 @@ import java.util.Optional;
 /**
  * The data should be validated before parsing.
  * */
-public enum CustomParserImpl implements CustomParser{
-    INSTANCE;
+public class CustomParserImpl implements CustomParser{
+    private static CustomParserImpl INSTANCE;
+
+    private CustomParserImpl(){}
+
+    public static CustomParserImpl getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new CustomParserImpl();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public Optional<int[]> parseToIntArray(String str, Validator validator) {

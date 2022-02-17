@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ValidationTest {
 
-    Validator validator = ValidatorImpl.INSTANCE;
+    Validator validator = ValidatorImpl.getInstance();
 
     @Test
     public void testValidPositiveInteger() {

@@ -14,12 +14,15 @@ import java.util.stream.Collectors;
 
 public class CustomArrayRepositoryImpl implements CustomArrayRepository{
 
-    private final static CustomArrayRepositoryImpl INSTANCE = new CustomArrayRepositoryImpl();
+    private static CustomArrayRepositoryImpl INSTANCE;
     private Map<Integer, CustomArray> items = new HashMap<>();
 
     private CustomArrayRepositoryImpl() {}
 
     public static CustomArrayRepositoryImpl getInstance() {
+        if (INSTANCE == null) {
+             INSTANCE = new CustomArrayRepositoryImpl();
+        }
         return INSTANCE;
     }
 

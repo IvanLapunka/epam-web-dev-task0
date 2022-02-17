@@ -26,7 +26,7 @@ public class CustomArrayReaderImpl implements CustomArrayReader {
     @Override
     public Optional<CustomArray> readFirstValid(String filePath, Validator validator) throws CustomException {
         List<String> rows = readAllLinesFromFile(filePath);
-        CustomParser parser = CustomParserImpl.INSTANCE;
+        CustomParser parser = CustomParserImpl.getInstance();
 
 
         for (String row : rows) {
@@ -43,7 +43,7 @@ public class CustomArrayReaderImpl implements CustomArrayReader {
     @Override
     public Optional<List<CustomArray>> readAllValidRows(String filePath, Validator validator) throws CustomException {
         List<String> rows = readAllLinesFromFile(filePath);
-        CustomParser parser = CustomParserImpl.INSTANCE;
+        CustomParser parser = CustomParserImpl.getInstance();
         var result = rows.stream()
                 .filter(validator::isIntegerNumbersArray)
                 .map(row -> parser.parseToIntArray(row, validator))

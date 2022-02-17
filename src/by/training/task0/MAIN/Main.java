@@ -31,7 +31,7 @@ public class Main {
             checkFirstValidLine(dataPath, arrayReader);
 
             String dataPath2 = propertyReader.getPropertyValue("data_file_all_valid_lines");
-            final List<CustomArray> customArrays = arrayReader.readAllValidRows(dataPath2, ValidatorImpl.INSTANCE)
+            final List<CustomArray> customArrays = arrayReader.readAllValidRows(dataPath2, ValidatorImpl.getInstance())
                     .orElse(List.of());
 
             task0Part2(customArrays);
@@ -93,7 +93,7 @@ public class Main {
 
     private static void checkFirstValidLine(String dataPath, CustomArrayReaderImpl arrayReader) throws CustomException {
         CustomArray arrayFromFile = arrayReader
-                .readFirstValid(dataPath, ValidatorImpl.INSTANCE)
+                .readFirstValid(dataPath, ValidatorImpl.getInstance())
                 .orElse(new CustomArray(new int[0]));
 
         ArrayService arrayService = new ArrayServiceImpl();

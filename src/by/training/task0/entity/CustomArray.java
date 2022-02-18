@@ -6,20 +6,33 @@ import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class CustomArray extends AbstractCustomArray{
-    private static int counter = 1;
     private int[] array;
 
-    public CustomArray(int[] array) {
+    public CustomArray(int[] array, Integer id) {
+        super(id);
         if (array == null) {
             this.array = new int[0];
+        } else {
+            this.array = Arrays.copyOf(array, array.length);
         }
-        this.array = array.clone();
-        this.id = counter;
-        counter++;
     }
 
-    public CustomArray(int size) {
+    public CustomArray(int[] array) {
+        super(null);
+        if (array == null) {
+            this.array = new int[0];
+        } else {
+            this.array = Arrays.copyOf(array, array.length);
+        }
+    }
+
+    public CustomArray(Integer size, Integer id) {
+        super(id);
         array = new int[size];
+    }
+
+    public CustomArray(Integer size) {
+        this(size, null);
     }
 
     public int[] getArray() {
@@ -64,7 +77,7 @@ public class CustomArray extends AbstractCustomArray{
 
     @Override
     public void notifyAllObservers() {
-        for (ArrayObserver observer: observers) {
+        for (ArrayObserver observer: this.getObservers()) {
             observer.changeElement(this);
         }
     }

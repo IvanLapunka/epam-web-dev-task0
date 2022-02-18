@@ -7,11 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractCustomArray implements Observable {
-    protected List<ArrayObserver> observers = new ArrayList<>();
-    protected Integer id;
+    private List<ArrayObserver> observers = new ArrayList<>();
+    private Integer id;
+
+    public AbstractCustomArray(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
+    }
+
+    public List<ArrayObserver> getObservers() {
+        return observers;
     }
 
     @Override

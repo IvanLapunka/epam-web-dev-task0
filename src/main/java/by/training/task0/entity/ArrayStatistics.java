@@ -15,6 +15,22 @@ public class ArrayStatistics {
         this.average = average;
     }
 
+    public int getMin() {
+        return min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner("","ArrayStatistics{","}")

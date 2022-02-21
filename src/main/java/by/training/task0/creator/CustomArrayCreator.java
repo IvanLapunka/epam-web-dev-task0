@@ -25,7 +25,7 @@ public class CustomArrayCreator {
 
     public List<CustomArray> createRandomlyGeneratedCustomArrayList(int listSize, int maxArraySize) throws CustomException {
         if (listSize < 0) {
-            throw new CustomException("It is not possible generate negative amount of items.");
+            throw new CustomException("It is not possible to generate negative amount of items.");
         }
         List<CustomArray> list = new ArrayList<>();
         for (int i = 0; i < listSize; i++) {

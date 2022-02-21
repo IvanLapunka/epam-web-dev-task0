@@ -16,7 +16,7 @@ public class ArrayServiceTest {
     ArrayService arrayService = new ArrayServiceImpl();
 
     @Test
-    public void testAmountOfPositiveNumbers() {
+    public void AmountOfPositiveNumbers() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 3;
@@ -25,7 +25,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testAmountOfNegativeNumbers() {
+    public void AmountOfNegativeNumbers() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 4;
@@ -34,7 +34,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testMinNumbers() {
+    public void MinNumbers() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = -4;
@@ -43,7 +43,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testMaxNumbers() {
+    public void MaxNumbers() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = 3;
@@ -52,7 +52,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testExchangeNegativeToZero() {
+    public void ExchangeNegativeToZero() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int[] expect = {3, 2, 1, 0, 0, 0, 0, 0};
@@ -61,7 +61,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testAverageNumber() {
+    public void AverageNumber() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         double expect = -0.5;
@@ -70,7 +70,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testSumNumber() {
+    public void SumNumber() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         int expect = -4;
@@ -79,7 +79,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testInsertionSort() {
+    public void InsertionSort() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         Arrays.sort(given);
@@ -88,7 +88,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testQuickSort() {
+    public void QuickSort() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         Arrays.sort(given);
@@ -97,7 +97,7 @@ public class ArrayServiceTest {
     }
 
     @Test
-    public void testMergeSort() {
+    public void MergeSort() {
         int[] given = {3, 2, 1, 0, -1, -2, -3, -4};
         CustomArray array = new CustomArray(given);
         Arrays.sort(given);

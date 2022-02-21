@@ -3,6 +3,7 @@ package by.training.task0.MAIN;
 import by.training.task0.configurator.CustomArrayConfigurator;
 import by.training.task0.entity.CustomArray;
 import by.training.task0.entity.Warehouse;
+import by.training.task0.entity.comparator.SizeArrayComparator;
 import by.training.task0.exception.CustomException;
 import by.training.task0.reader.impl.CustomArrayReaderImpl;
 import by.training.task0.reader.PropertyReader;
@@ -87,7 +88,7 @@ public class Main {
         customArrayRepository.queryAll().forEach(System.out::println);
 
         System.out.println("AFTER sort arrays by their length");
-        customArrayRepository.sort((c1, c2) -> c1.size() - c2.size()).forEach(System.out::println);
+        customArrayRepository.sort(new SizeArrayComparator()).forEach(System.out::println);
 
     }
 

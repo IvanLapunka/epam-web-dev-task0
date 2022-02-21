@@ -35,7 +35,7 @@ public class CustomArrayCreator {
         return list;
     }
 
-    private int[] intArrayGenerator(int arraySize) throws CustomException {
+    public int[] intArrayGenerator(int arraySize) throws CustomException {
         if (arraySize < 0) {
             throw new CustomException("The size of array should be non negative");
         }
